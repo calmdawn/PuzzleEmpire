@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+
+    <TextView
+        android:id="@+id/activity_main_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:text="Select Game"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorAccent"
+        android:gravity="center"
+
+        />
+
+   <Button
+       android:id="@+id/activity_main_btn_imagePuzzle"
+       android:layout_width="100sp"
+       android:layout_height="100sp"
+       android:layout_marginTop="150sp"
+       android:layout_marginLeft="50sp"
+       android:layout_below="@id/activity_main_tv_title"
+       android:background="@drawable/main_image"
+       />
+    <TextView
+        android:layout_width="100sp"
+        android:layout_height="50sp"
+        android:layout_marginLeft="50sp"
+        android:layout_below="@id/activity_main_btn_imagePuzzle"
+        android:text="그림맞추기"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/activity_main_btn_numberPuzzle"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_marginTop="150sp"
+        android:layout_marginLeft="100sp"
+        android:layout_toRightOf="@id/activity_main_btn_imagePuzzle"
+        android:layout_below="@id/activity_main_tv_title"
+        android:background="@drawable/main_number"
+        />
+
+    <TextView
+        android:layout_width="100sp"
+        android:layout_height="50sp"
+        android:layout_marginLeft="100sp"
+        android:layout_toRightOf="@id/activity_main_btn_imagePuzzle"
+        android:layout_below="@id/activity_main_btn_numberPuzzle"
+        android:textStyle="bold"
+        android:text="숫자맞추기"
+        android:textSize="20sp"/>
+
+</RelativeLayout>

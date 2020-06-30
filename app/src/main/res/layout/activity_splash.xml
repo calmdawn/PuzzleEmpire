@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="Welcome to Puzzle Game"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textColor="@color/colorAccent"
+        android:textStyle="bold"
+        android:layout_marginTop="40sp"
+        />
+
+    <ImageView
+        android:id="@+id/activity_splash_iv_loading"
+        android:layout_width="match_parent"
+        android:layout_height="400sp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="50sp"/>
+
+</LinearLayout>

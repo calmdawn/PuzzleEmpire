@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">ShufflePuzzle</string>
+
+
+    <string name="image_swap_title">그림 맞추기</string>
+    <string name="image_swap_info">클릭된 이미지들을 바꿔서 퍼즐을 맞추세요.</string>
+
+    <string name="number_title">순서 맞추기</string>
+    <string name="number_info">1부터 25까지의 숫자를 보고 \n제한 시간 안에 차례대로 클릭해주세요.</string>
+    <string name="number_time">제한시간 : 60초</string>
+    <string name="score_title">게임이 종료되었습니다.</string>
+
+</resources>
