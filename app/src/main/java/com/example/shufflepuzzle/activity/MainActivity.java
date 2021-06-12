@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,25 +15,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ImageView imagePuzzleIv = findViewById(R.id.activity_main_image_puzzle_iv);
+        ImageView numberPuzzleIv = findViewById(R.id.activity_main_number_puzzle_btn);
 
-        Button button1 = findViewById(R.id.activity_main_btn_imagePuzzle);
-        button1.setOnClickListener(new View.OnClickListener() {
+
+        imagePuzzleIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ImagePuzzleActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ImageSwapPuzzleActivity.class);
                 startActivity(intent);
             }
         });
 
-        Button button2 = findViewById(R.id.activity_main_btn_numberPuzzle);
-        button2.setOnClickListener(new View.OnClickListener() {
+        numberPuzzleIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), NumberPuzzleActivity.class);
                 startActivity(intent);
             }
         });
-
 
     }
 }
