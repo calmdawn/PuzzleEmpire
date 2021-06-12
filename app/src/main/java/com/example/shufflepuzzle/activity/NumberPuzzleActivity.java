@@ -1,8 +1,7 @@
-package com.example.shufflepuzzle;
+package com.example.shufflepuzzle.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,6 +11,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.shufflepuzzle.R;
 
 public class NumberPuzzleActivity extends AppCompatActivity {
 
@@ -31,7 +32,6 @@ public class NumberPuzzleActivity extends AppCompatActivity {
         final RelativeLayout scoreLayout = findViewById(R.id.activity_number_ly_score);
 
         final TextView numberScoreResult = findViewById(R.id.activity_number_tv_result);
-
 
         Button btn1 = findViewById(R.id.activity_number_btn_num1); Button btn14 = findViewById(R.id.activity_number_btn_num14);
         Button btn2 = findViewById(R.id.activity_number_btn_num2); Button btn15 = findViewById(R.id.activity_number_btn_num15);

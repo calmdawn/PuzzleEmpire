@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NumberPuzzleActivity"></activity>
-        <activity android:name=".ImagePuzzleActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".activity.ImageSwapPuzzleActivity"></activity>
+        <activity android:name=".activity.NumberPuzzleActivity" />
+        <activity android:name=".activity.ImagePuzzleActivity" />
+        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

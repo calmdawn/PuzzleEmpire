@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ImageSwapPuzzleActivity">
+
+    <TextView
+        android:id="@+id/activity_image_swap_puzzle_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin_8dp"
+        android:text="그림 맞추기"
+        android:textSize="@dimen/title_textsize_30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_image_swap_puzzle_explain_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin_8dp"
+        android:gravity="center"
+        android:text="이미지를 클릭하고 바꾸어 퍼즐을 맞추세요."
+        android:textSize="@dimen/textsize_20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_image_swap_puzzle_title_tv" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_image_swap_puzzle_recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/large_margin_24dp"
+        android:layout_marginTop="@dimen/medium_margin_16dp"
+        android:layout_marginEnd="@dimen/large_margin_24dp"
+        android:background="@drawable/activity_image_swap_layout_background_corner_black"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_image_swap_puzzle_explain_tv" />
+
+    <ImageView
+        android:id="@+id/activity_image_swap_puzzle_original_iv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/medium_margin_16dp"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintStart_toStartOf="@+id/activity_image_swap_puzzle_recycler"
+        app:layout_constraintTop_toBottomOf="@id/activity_image_swap_puzzle_recycler"
+        app:layout_constraintWidth_percent="0.2" />
+
+    <TextView
+        android:id="@+id/activity_image_swap_puzzle_countdown_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="제한시간 : 0"
+        android:textColor="@color/black_000000"
+        android:textSize="@dimen/textsize_20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_image_swap_puzzle_original_iv"
+        app:layout_constraintEnd_toEndOf="@+id/activity_image_swap_puzzle_recycler"
+        app:layout_constraintStart_toStartOf="@+id/activity_image_swap_puzzle_recycler"
+        app:layout_constraintTop_toTopOf="@+id/activity_image_swap_puzzle_original_iv"
+        app:layout_constraintWidth_percent="0.3" />
+
+    <Button
+        android:id="@+id/activity_image_swap_puzzle_matrix3_btn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin_8dp"
+        android:background="@drawable/activity_image_swap_layout_background_round_gray"
+        android:enabled="false"
+        android:text="3 X 3"
+        android:textColor="@color/gray_B9B9B9"
+        app:layout_constraintEnd_toStartOf="@id/activity_image_swap_puzzle_matrix4_btn"
+        app:layout_constraintStart_toStartOf="@+id/activity_image_swap_puzzle_original_iv"
+        app:layout_constraintTop_toBottomOf="@+id/activity_image_swap_puzzle_original_iv" />
+
+    <Button
+        android:id="@+id/activity_image_swap_puzzle_matrix4_btn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin_8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/activity_image_swap_layout_background_round_gray"
+        android:enabled="false"
+        android:text="4 X 4"
+        android:textColor="@color/gray_B9B9B9"
+        app:layout_constraintEnd_toStartOf="@+id/activity_image_swap_puzzle_matrix5_btn"
+        app:layout_constraintStart_toEndOf="@+id/activity_image_swap_puzzle_matrix3_btn"
+        app:layout_constraintTop_toTopOf="@+id/activity_image_swap_puzzle_matrix3_btn" />
+
+    <Button
+        android:id="@+id/activity_image_swap_puzzle_matrix5_btn"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/activity_image_swap_layout_background_round_gray"
+        android:enabled="false"
+        android:text="5 X 5"
+        android:textColor="@color/gray_B9B9B9"
+        app:layout_constraintEnd_toEndOf="@+id/activity_image_swap_puzzle_recycler"
+        app:layout_constraintStart_toEndOf="@+id/activity_image_swap_puzzle_matrix4_btn"
+        app:layout_constraintTop_toTopOf="@+id/activity_image_swap_puzzle_matrix4_btn" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/activity_image_swap_photo_list_recycler"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/small_margin_8dp"
+        android:layout_marginBottom="@dimen/medium_margin_16dp"
+        android:background="@drawable/activity_image_swap_layout_background_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activity_image_swap_puzzle_recycler"
+        app:layout_constraintStart_toStartOf="@+id/activity_image_swap_puzzle_recycler"
+        app:layout_constraintTop_toBottomOf="@+id/activity_image_swap_puzzle_matrix3_btn" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

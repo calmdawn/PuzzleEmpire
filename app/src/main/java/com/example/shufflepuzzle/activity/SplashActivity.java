@@ -1,4 +1,4 @@
-package com.example.shufflepuzzle;
+package com.example.shufflepuzzle.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
+import com.example.shufflepuzzle.R;
+import com.example.shufflepuzzle.activity.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

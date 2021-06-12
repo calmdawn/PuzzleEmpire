@@ -1,28 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <TextView
-        android:text="Welcome to Puzzle Game"
-        android:layout_width="match_parent"
-        android:layout_height="100sp"
-        android:textSize="30sp"
+        android:id="@+id/activity_splash_title_tv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/medium_margin_16dp"
         android:gravity="center"
-        android:textColor="@color/colorAccent"
+        android:text="Welcome to Puzzle Game"
+        android:textColor="@color/pink_FF91A4"
+        android:textSize="@dimen/title_textsize_30dp"
         android:textStyle="bold"
-        android:layout_marginTop="40sp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/activity_splash_iv_loading"
-        android:layout_width="match_parent"
-        android:layout_height="400sp"
-        android:scaleType="fitXY"
-        android:layout_marginTop="50sp"/>
+        android:id="@+id/activity_splash_loading_iv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/medium_margin_16dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_splash_title_tv" />
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

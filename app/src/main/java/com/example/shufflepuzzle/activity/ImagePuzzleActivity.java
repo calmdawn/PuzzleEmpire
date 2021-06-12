@@ -1,4 +1,4 @@
-package com.example.shufflepuzzle;
+package com.example.shufflepuzzle.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.shufflepuzzle.R;
 
 import java.util.Random;
 

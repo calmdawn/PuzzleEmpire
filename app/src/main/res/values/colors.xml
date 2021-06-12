@@ -5,13 +5,22 @@
     <color name="colorAccent">#03DAC5</color>
 
 
+    <color name="pink_FF91A4">#FF91A4</color>
+
+    <color name="gray_979797">#979797</color>
+    <color name="gray_B9B9B9">#B9B9B9</color>
+
+    <color name="white_FFFFFF">#FFFFFF</color>
+
+    <color name="black_000000">#000000</color>
+
+
+
     <color name="colorImageViewBackground">#34FFFFFF</color>
     <color name="colorFillerImageView">#4B000000</color>
 
-
-
     <color name="colorPuzzleBackground">#FFFFFF</color>
-    <color name="colorInitPuzzle">#000000</color>
+
     <color name="colorRightPuzzle">#43B8EE</color>
     <color name="colorWrongPuzzle">#FF0000</color>
 
