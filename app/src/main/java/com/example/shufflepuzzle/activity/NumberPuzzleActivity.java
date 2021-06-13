@@ -58,11 +58,6 @@ public class NumberPuzzleActivity extends AppCompatActivity {
             }
         });
 
-        //초기화 버튼 미사용
-        Button numberClear = findViewById(R.id.activity_number_btn_clear);
-        numberClear.setVisibility(View.GONE);
-
-
 
         final String[] ascNum = {  "1","2","3","4","5", "6","7","8","9","10",
                 "11","12","13","14","15", "16","17","18","19","20",
@@ -86,7 +81,7 @@ public class NumberPuzzleActivity extends AppCompatActivity {
             @Override
             public void onTick(long l) {
                 timer--;
-                TextView timeTextView = findViewById(R.id.activity_number_tv_time);
+                TextView timeTextView = findViewById(R.id.activity_image_swap_puzzle_countdown_tv);
                 timeTextView.setText("제한시간 : " + timer+ "초" );
 
                 if(timer ==0){
@@ -99,7 +94,7 @@ public class NumberPuzzleActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                TextView timeTextView = findViewById(R.id.activity_number_tv_time);
+                TextView timeTextView = findViewById(R.id.activity_image_swap_puzzle_countdown_tv);
                 timeTextView.setText("제한시간 : " + timer+ "초" );
             }
         };

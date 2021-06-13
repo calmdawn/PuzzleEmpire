@@ -64,7 +64,7 @@ public class PhotoListRecyclerAdapter extends RecyclerView.Adapter<PhotoListRecy
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.photoIv = itemView.findViewById(R.id.activity_image_swap_puzzle_layout_item_iv);
+            this.photoIv = itemView.findViewById(R.id.activity_image_swap_puzzle_layout_item_photo_iv);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

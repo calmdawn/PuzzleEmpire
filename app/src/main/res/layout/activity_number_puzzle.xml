@@ -1,255 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <TextView
-        android:id="@+id/activity_number_tv_title"
+
+    <ImageView
+        android:id="@+id/activity_number_puzzle_back_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/number_title"
-        android:textSize="20dp"
-        />
+        android:layout_marginStart="@dimen/medium_margin_16dp"
+        android:layout_marginTop="@dimen/medium_margin_16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back_black_24dp" />
 
     <TextView
-        android:id="@+id/activity_number_tv_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/activity_number_tv_title"
+        android:id="@+id/activity_number_puzzle_title_tv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/medium_margin_16dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="순서 맞추기"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/activity_number_puzzle_explain_tv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/large_margin_24dp"
+        android:layout_marginTop="@dimen/small_margin_8dp"
+        android:layout_marginEnd="@dimen/large_margin_24dp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
         android:text="@string/number_info"
-        android:textSize="20dp"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.03"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_number_puzzle_title_tv" />
+
 
     <GridLayout
 
         android:id="@+id/activity_number_ly_puzzle"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_below="@id/activity_number_tv_info"
-        android:layout_marginTop="40dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/large_margin_24dp"
+        android:layout_marginTop="@dimen/medium_margin_16dp"
+        android:layout_marginEnd="@dimen/large_margin_24dp"
         android:columnCount="5"
+        android:orientation="horizontal"
         android:rowCount="5"
-        >
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_number_puzzle_explain_tv">
 
         <Button
             android:id="@+id/activity_number_btn_num1"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginRight="5dp"
-            />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num2"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
+
         <Button
             android:id="@+id/activity_number_btn_num3"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
+
         <Button
             android:id="@+id/activity_number_btn_num4"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
+
         <Button
             android:id="@+id/activity_number_btn_num5"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <!-- 5*5의 1행-->
 
         <Button
             android:id="@+id/activity_number_btn_num6"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num7"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num8"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num9"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num10"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <!-- 5*5의 2행-->
 
         <Button
             android:id="@+id/activity_number_btn_num11"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num12"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num13"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num14"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num15"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <!-- 5*5의 3행-->
 
         <Button
             android:id="@+id/activity_number_btn_num16"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num17"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num18"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num19"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num20"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <!-- 5*5의 4행-->
         <Button
             android:id="@+id/activity_number_btn_num21"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num22"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num23"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num24"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1" />
 
         <Button
             android:id="@+id/activity_number_btn_num25"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"/>
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:padding="5dp" />
 
         <!-- 5*5의 2행-->
 
     </GridLayout>
 
-    <TextView
-        android:id="@+id/activity_number_tv_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/activity_number_ly_puzzle"
-        android:layout_marginTop="20dp"
-        android:text="@string/number_time"
-        android:textSize="20dp"
-        />
 
-    <Button
-        android:id="@+id/activity_number_btn_clear"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/activity_number_tv_time"
-        android:layout_toLeftOf="@id/activity_number_btn_start"
-        android:layout_marginTop="20dp"
-        android:text="초 기 화"
-        android:textSize="20dp"/>
+    <TextView
+        android:id="@+id/activity_number_puzzle_countdown_tv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="제한시간 : 60초"
+        android:textColor="@color/black_000000"
+        android:textSize="@dimen/textsize_20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_image_swap_puzzle_original_iv"
+        app:layout_constraintEnd_toEndOf="@+id/activity_number_ly_puzzle"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/activity_number_ly_puzzle"
+        app:layout_constraintTop_toBottomOf="@+id/activity_number_ly_puzzle" />
 
     <Button
         android:id="@+id/activity_number_btn_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/activity_number_tv_time"
-        android:layout_marginTop="20dp"
         android:text="시 작 하 기"
-        android:textSize="20dp"/>
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_number_puzzle_countdown_tv" />
 
 
     <RelativeLayout
@@ -258,7 +284,9 @@
         android:layout_height="400sp"
         android:layout_centerInParent="true"
         android:background="@color/colorScore"
-        android:visibility="gone">
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/activity_number_tv_scoreTitle"
@@ -267,45 +295,39 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="@string/score_title"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/activity_number_tv_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/activity_number_tv_scoreTitle"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="80dp"
-            android:layout_below="@id/activity_number_tv_scoreTitle"
             android:text="00"
-            android:textSize="30sp"/>
-
-
+            android:textSize="30sp" />
 
 
         <TextView
             android:id="@+id/activity_number_tv_resultBelow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
             android:layout_below="@id/activity_number_tv_result"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
             android:text="위의 점수를 흭득하셨습니다"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/activity_number_btn_returnMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/activity_number_tv_resultBelow"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="80dp"
-            android:layout_below="@id/activity_number_tv_resultBelow"
-            android:text="게임선택 화면으로 이동"
-            />
+            android:text="게임선택 화면으로 이동" />
 
     </RelativeLayout>
 
 
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

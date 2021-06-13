@@ -14,10 +14,11 @@
 
     <color name="black_000000">#000000</color>
 
+    <color name="color_filter_iv_4B000000">#FFFFFF</color>
 
 
     <color name="colorImageViewBackground">#34FFFFFF</color>
-    <color name="colorFillerImageView">#4B000000</color>
+
 
     <color name="colorPuzzleBackground">#FFFFFF</color>
 

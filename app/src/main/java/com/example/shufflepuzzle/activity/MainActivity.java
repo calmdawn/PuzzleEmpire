@@ -1,11 +1,11 @@
 package com.example.shufflepuzzle.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.shufflepuzzle.R;
 
@@ -18,7 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView imagePuzzleIv = findViewById(R.id.activity_main_image_puzzle_iv);
         ImageView numberPuzzleIv = findViewById(R.id.activity_main_number_puzzle_btn);
-
 
         imagePuzzleIv.setOnClickListener(new View.OnClickListener() {
             @Override
