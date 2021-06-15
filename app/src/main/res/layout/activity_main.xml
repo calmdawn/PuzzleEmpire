@@ -13,7 +13,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/medium_margin_16dp"
         android:gravity="center"
-        android:text="게임 선택"
+        android:text="@string/main_title"
         android:textColor="@color/pink_FF91A4"
         android:textSize="@dimen/title_textsize_30dp"
         android:textStyle="bold"
@@ -27,10 +27,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/large_margin_24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.2"
         app:cardCornerRadius="@dimen/medium_radius_16dp"
         app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_main_title_tv"
         app:layout_constraintWidth_percent="0.8">
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_margin_8dp"
         android:gravity="center"
-        android:text="그림 맞추기"
+        android:text="@string/main_sub_title_img"
         android:textColor="@color/gray_979797"
         android:textSize="@dimen/sub_title_textsize_24dp"
         android:textStyle="bold"
@@ -64,10 +64,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/very_large_margin_32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.2"
         app:cardCornerRadius="@dimen/medium_radius_16dp"
         app:cardElevation="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/activity_main_image_puzzle_tv"
         app:layout_constraintWidth_percent="0.8">
@@ -77,19 +77,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitXY"
-            app:srcCompat="@drawable/main_img_number"
-            />
+            app:srcCompat="@drawable/main_img_number" />
     </androidx.cardview.widget.CardView>
 
 
     <TextView
         android:id="@+id/activity_main_number_puzzle_tv"
         android:layout_width="0dp"
-        android:textColor="@color/gray_979797"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/small_margin_8dp"
         android:gravity="center"
-        android:text="숫자 맞추기"
+        android:text="@string/main_sub_title_number"
+        android:textColor="@color/gray_979797"
         android:textSize="@dimen/sub_title_textsize_24dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/activity_main_number_puzzle_cardview"

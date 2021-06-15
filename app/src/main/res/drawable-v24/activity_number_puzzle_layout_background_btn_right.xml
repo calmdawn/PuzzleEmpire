@@ -2,12 +2,12 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <stroke
-        android:color="@color/black_000000"
+        android:color="@color/right_puzzle_blue_43B8EE"
         android:width="3dp"
         />
 
     <solid
-        android:color="@color/colorPuzzleBackground"
+        android:color="@color/white_FFFFFF"
         />
 
 </shape>

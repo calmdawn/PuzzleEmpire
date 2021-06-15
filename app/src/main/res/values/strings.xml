@@ -1,10 +1,30 @@
 <resources>
     <string name="app_name">ShufflePuzzle</string>
-    <string name="image_swap_title">그림 맞추기</string>
-    <string name="image_swap_info">클릭된 이미지들을 바꿔서 퍼즐을 맞추세요.</string>
-    <string name="number_title">순서 맞추기</string>
-    <string name="number_info">1부터 25까지의 숫자를 보고 \n제한 시간 안에 차례대로 클릭해주세요.</string>
-    <string name="number_time">제한시간 : 60초</string>
-    <string name="score_title">게임이 종료되었습니다.</string>
+
+    <!--Splash-->
+    <string name="splash_title">Welcome to Puzzle Game</string>
+
+    <!--    Main-->
+    <string name="main_title">게임 선택</string>
+    <string name="main_sub_title_img">그림 맞추기</string>
+    <string name="main_sub_title_number">숫자 맞추기</string>
+
+    <!--    ImageSwapPuzzle-->
+    <string name="image_swap_puzzle_title">그림 맞추기</string>
+    <string name="image_swap_puzzle_sub_title">이미지를 클릭하고 바꾸어 퍼즐을 맞추세요</string>
+    <string name="image_swap_puzzle_matrix3">3 X 3</string>
+    <string name="image_swap_puzzle_matrix4">4 X 4</string>
+    <string name="image_swap_puzzle_matrix5">5 X 5</string>
+
+    <!--    NumberPuzzle-->
+    <string name="number_puzzle_title">순서 맞추기</string>
+    <string name="number_puzzle_sub_title">1부터 25까지의 숫자를 보고 \n제한 시간 안에 차례대로 클릭해주세요</string>
+    <string name="number_puzzle_return_main">게임선택 화면으로</string>
+
+    <!--    Common-->
+    <string name="game_start">게임 시작</string>
+    <string name="game_set">게임이 종료되었습니다</string>
+    <string name="limit_time_120">제한시간 : 120초</string>
+    <string name="limit_time_60">제한시간 : 60초</string>
 
 </resources>

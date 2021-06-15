@@ -1,241 +1,225 @@
 package com.example.shufflepuzzle.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.GridLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.shufflepuzzle.R;
 
-public class NumberPuzzleActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
-    String sNum = "1";
+public class NumberPuzzleActivity extends AppCompatActivity implements View.OnClickListener {
+
+
+    ArrayList<Button> btnArrayList;
+
+    int currentNum;
     int timer = 60;
-    int numberGameResult;
-    MediaPlayer mediaPlayer;
 
+    TextView gameStartTv;
+    TextView countDownTv;
+    TextView scoreResultTv;
+    ConstraintLayout scoreConstLayout;
+    CountDownTimer countDownTimer;
+
+    MediaPlayer mainMediaPlayer;
+    MediaPlayer wrongMediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_number_puzzle);
 
-        final RelativeLayout scoreLayout = findViewById(R.id.activity_number_ly_score);
+        btnArrayList = new ArrayList<>();
+        NumberBtnOnClickListener numberBtnOnClickListener = new NumberBtnOnClickListener();
+        mainMediaPlayer = MediaPlayer.create(this, R.raw.main_theme);
 
-        final TextView numberScoreResult = findViewById(R.id.activity_number_tv_result);
+        GridLayout gridLayout = findViewById(R.id.activity_number_puzzle_gridlayout);
+        scoreConstLayout = findViewById(R.id.activity_number_puzzle_score_constlayout);
 
-        Button btn1 = findViewById(R.id.activity_number_btn_num1); Button btn14 = findViewById(R.id.activity_number_btn_num14);
-        Button btn2 = findViewById(R.id.activity_number_btn_num2); Button btn15 = findViewById(R.id.activity_number_btn_num15);
-        Button btn3 = findViewById(R.id.activity_number_btn_num3); Button btn16 = findViewById(R.id.activity_number_btn_num16);
-        Button btn4 = findViewById(R.id.activity_number_btn_num4); Button btn17 = findViewById(R.id.activity_number_btn_num17);
-        Button btn5 = findViewById(R.id.activity_number_btn_num5); Button btn18 = findViewById(R.id.activity_number_btn_num18);
-        Button btn6 = findViewById(R.id.activity_number_btn_num6); Button btn19 = findViewById(R.id.activity_number_btn_num19);
-        Button btn7 = findViewById(R.id.activity_number_btn_num7); Button btn20 = findViewById(R.id.activity_number_btn_num20);
-        Button btn8 = findViewById(R.id.activity_number_btn_num8); Button btn21= findViewById(R.id.activity_number_btn_num21);
-        Button btn9 = findViewById(R.id.activity_number_btn_num9); Button btn22= findViewById(R.id.activity_number_btn_num22);
-        Button btn10 = findViewById(R.id.activity_number_btn_num10); Button btn23 = findViewById(R.id.activity_number_btn_num23);
-        Button btn11 = findViewById(R.id.activity_number_btn_num11); Button btn24 = findViewById(R.id.activity_number_btn_num24);
-        Button btn12 = findViewById(R.id.activity_number_btn_num12); Button btn25= findViewById(R.id.activity_number_btn_num25);
-        Button btn13 = findViewById(R.id.activity_number_btn_num13);
+        countDownTv = findViewById(R.id.activity_number_puzzle_countdown_tv);
+        gameStartTv = findViewById(R.id.activity_number_puzzle_gamestart_tv);
+        TextView returnSelectGameTv = findViewById(R.id.activity_number_puzzle_score_return_select_game_tv);
+        scoreResultTv = findViewById(R.id.activity_number_puzzle_score_result_tv);
 
-        final Button numberStart = findViewById(R.id.activity_number_btn_start);
-
-        Button btnReturnMenu = findViewById(R.id.activity_number_btn_returnMenu);
-
-        btnReturnMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        ImageView backIv = findViewById(R.id.activity_number_puzzle_back_iv);
 
 
-        final String[] ascNum = {  "1","2","3","4","5", "6","7","8","9","10",
-                "11","12","13","14","15", "16","17","18","19","20",
-                "21","22","23","24","25"};
+        gameStartTv.setOnClickListener(this);
+        returnSelectGameTv.setOnClickListener(this);
+        backIv.setOnClickListener(this);
 
-        final Button[] buttonArray = {btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10,
-                btn11, btn12, btn13, btn14, btn15, btn16, btn17, btn18, btn19, btn20,
-                btn21, btn22, btn23, btn24, btn25};
-
-        for(int i=0; i<25; i++){
-            buttonArray[i].setText(ascNum[i]);
-            buttonArray[i].setBackground(getResources().getDrawable(R.drawable.custom_button_init_background));
+        for (int i = 1; i <= 25; i++) { //초기 1 ~ 25 버튼 세팅
+            Button childBtn = createButton(String.valueOf(i));
+            childBtn.setOnClickListener(numberBtnOnClickListener);
+            gridLayout.addView(childBtn);
+            btnArrayList.add(childBtn);
         }
 
+        mainMediaPlayer.start();
 
-
-        final ButtonArrayClickableControl btnArrayClickableControl = new ButtonArrayClickableControl(buttonArray);
-        btnArrayClickableControl.setBtnArrayUnClickable();
-
-        final CountDownTimer puzzleTimer = new CountDownTimer(60* 1000, 1000) {
+        countDownTimer = new CountDownTimer(timer * 1000, 1000) {   // 1초씩 줄어듬
             @Override
-            public void onTick(long l) {
+            public void onTick(long l) {    //0초시 자동으로 onFinish() 호출함
+                countDownTv.setText("제한시간 : " + l / 1000 + "초");
                 timer--;
-                TextView timeTextView = findViewById(R.id.activity_image_swap_puzzle_countdown_tv);
-                timeTextView.setText("제한시간 : " + timer+ "초" );
-
-                if(timer ==0){
-                    numberGameResult = timer;
-                    scoreLayout.setVisibility(View.VISIBLE);
-                    numberScoreResult.setText(numberGameResult+"점");
-                }
-
             }
 
             @Override
             public void onFinish() {
-                TextView timeTextView = findViewById(R.id.activity_image_swap_puzzle_countdown_tv);
-                timeTextView.setText("제한시간 : " + timer+ "초" );
-            }
-        };
-
-
-        numberStart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                btnArrayClickableControl.setBtnArrayAllClickable();
-                String[] randomNum = shuffle(ascNum);
-
-                for(int i=0; i<25; i++){
-                    buttonArray[i].setText(randomNum[i]);
-                }
-
-                puzzleTimer.cancel();
-                timer = 60;
-                puzzleTimer.start();
-                numberStart.setEnabled(false);
-            }
-        });
-
-        View.OnClickListener btnOnClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int id = v.getId();
-
-                for(int i =0; i<buttonArray.length; i++){
-                    if(id == buttonArray[i].getId()){
-                        if(sNum.equals(buttonArray[i].getText())) {
-                            buttonArray[i].setBackground(getResources().getDrawable(R.drawable.custom_button_right_background));
-                            buttonArray[i].setEnabled(false);
-                            if(sNum.equals("25")){
-                                Toast.makeText(getApplicationContext(),"정답입니다", Toast.LENGTH_LONG).show();
-                                puzzleTimer.cancel();
-                                puzzleTimer.onFinish();
-
-                                //게임결과값이 나와야함
-                                numberGameResult = timer;
-                                scoreLayout.setVisibility(View.VISIBLE);
-                                numberScoreResult.setText(numberGameResult+"점");
-
-
-                            }
-                            sNum = Integer.toString(Integer.parseInt(sNum) + 1);
-
-                        }else {
-                            buttonArray[i].setBackground(getResources().getDrawable(R.drawable.custom_button_wrong_background));
-                            mediaPlayer = MediaPlayer.create(NumberPuzzleActivity.this, R.raw.sound_button_wrong);
-                            mediaPlayer.start();
-                            Runnable pauseRunnable = new PauseRunnable(buttonArray, i);
-                            Thread pauseThread = new Thread(pauseRunnable);
-                            pauseThread.start();
-                        }
-                    }
-                }
 
             }
         };
+    }
 
-        //향상된 for문을 통해 btnOnClickListener에 연결
-        for(Button btn: buttonArray){
-            btn.setOnClickListener(btnOnClickListener);
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mainMediaPlayer.stop();
+        mainMediaPlayer = null;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.activity_number_puzzle_gamestart_tv:
+                scoreConstLayout.setVisibility(View.GONE);
+                setBtnArrayInit(btnArrayList);
+                currentNum = 1;
+                shuffle(btnArrayList);
+                setBtnArrayClickable(btnArrayList);
+                v.setEnabled(false);
+                countDownTimer.start();
+                v.setVisibility(View.INVISIBLE);
+                break;
+            case R.id.activity_number_puzzle_back_iv:
+            case R.id.activity_number_puzzle_score_return_select_game_tv:
+                finish();
+                break;
+        }
+    }
+
+    private void setBtnArrayInit(ArrayList<Button> btnArrayList) {
+        for (Button btn : btnArrayList) {
+            btn.setBackground(getDrawable(R.drawable.activity_number_puzzle_layout_background_btn_init));
+            btn.setTextColor(getColor(R.color.light_black_272727));
+        }
+    }
+
+
+    class NumberBtnOnClickListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+            if (((Button) v).getText().equals(String.valueOf(currentNum))) {    //버튼 숫자가 현재 숫자와 같은 경우
+                ((Button) v).setTextColor(getColor(R.color.right_puzzle_blue_43B8EE));
+                v.setBackground(getDrawable(R.drawable.activity_number_puzzle_layout_background_btn_right));
+                v.setEnabled(false);
+
+                if (currentNum == 25) {   // 모두 다 맞춘경우
+                    gameSet();
+                } else {
+                    currentNum++;
+                }
+
+            } else {   //버튼 숫자와 현재 숫자가 틀린 경우
+                v.setBackground(getDrawable(R.drawable.activity_number_puzzle_layout_background_btn_wrong));
+                pausePuzzle(v);
+            }
+        }
+
+        private void gameSet() {
+            countDownTimer.cancel();
+            countDownTimer.onFinish();
+            scoreConstLayout.setVisibility(View.VISIBLE);
+            scoreResultTv.setText("점수 : " + timer);
+            gameStartTv.setVisibility(View.VISIBLE);
+            gameStartTv.setText("재시작");
+            gameStartTv.setEnabled(true);
+            setBtnArrayUnClickable(btnArrayList);
         }
 
 
     }
 
+    private void pausePuzzle(final View v) {  // 틀린 경우 빨간색 표시후 2초간 클릭불가 이후 정상작동
+        wrongMediaPlayer = MediaPlayer.create(this, R.raw.sound_button_wrong);
+        wrongMediaPlayer.start();
+        setBtnArrayUnClickable(btnArrayList);
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                wrongMediaPlayer.stop();
+                wrongMediaPlayer = null;
+                v.setBackground(getDrawable(R.drawable.activity_number_puzzle_layout_background_btn_init));
+                setBtnArrayClickable(btnArrayList);
 
-    public String[] shuffle(String[] strArray){
+            }
+        }, 2000);
 
-        for(int i=0; i<strArray.length; i++){
-            int a = (int)(Math.random()*strArray.length);
-            int b = (int)(Math.random()*strArray.length);
+    }
 
-            String temp = strArray[a];
-            strArray[a] = strArray[b];
-            strArray[b] = temp;
+    private Button createButton(String text) {  //1 ~ 25까지 각각 버튼 생성
+        Button button = new Button(this);
+        GridLayout.LayoutParams params = new GridLayout.LayoutParams(    //행렬의 weight를 1로부여함
+                GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f),
+                GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL, 1f));
+        params.height = 0;
+        params.width = 0;
+        params.setMargins(8, 8, 8, 8);
+        button.setLayoutParams(params);
+        button.setText(text);   //텍스트 입력
+        button.setTextColor(getColor(R.color.light_black_272727));
+        button.setBackground(getDrawable(R.drawable.activity_number_puzzle_layout_background_btn_init));    //기본 버튼배경
+        button.setEnabled(false);
+        return button;
+    }
+
+
+    public void shuffle(ArrayList<Button> btnArrayList) { //1~25까지의 수를 랜덤으로 버튼에 세팅
+        String[] numbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
+                "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
+                "21", "22", "23", "24", "25"};
+
+        for (int i = 0; i < numbers.length; i++) {
+            int a = (int) (Math.random() * numbers.length);
+            int b = (int) (Math.random() * numbers.length);
+
+            String temp = numbers[a];
+            numbers[a] = numbers[b];
+            numbers[b] = temp;
         }
 
-        return strArray;
+        for (int i = 0; i < btnArrayList.size(); i++) {
+            btnArrayList.get(i).setText(numbers[i]);
+        }
 
     }
 
 
     //버튼 전체의 활성/비활성을 컨트롤하기 위한 클래스
-    class ButtonArrayClickableControl{
-        Button[] btnArray;
-
-
-        public ButtonArrayClickableControl(Button[] btnArray){
-            this.btnArray = btnArray;
+    private void setBtnArrayClickable(ArrayList<Button> btnArrayList) {
+        for (Button btn : btnArrayList) {
+            btn.setEnabled(true);
         }
-
-        public void setBtnArrayAllClickable(){
-            for(Button btn: btnArray){
-                btn.setEnabled(true);
-            }
-        }
-
-        public void setBtnArrayUnClickable(){
-            for(Button btn: btnArray){
-                btn.setEnabled(false);
-            }
-        }
-
     }
 
-
-
-    // 틀렸을시 빨간색 표시후 3초간 클릭불가 이후 정상작동
-    class PauseRunnable implements Runnable {
-        Button[] btnArray;
-        int i;
-
-
-        public PauseRunnable(Button[] btnArray, int i){
-            this.btnArray = btnArray;
-            this.i = i;
-
+    private void setBtnArrayUnClickable(ArrayList<Button> btnArrayList) {
+        for (Button btn : btnArrayList) {
+            btn.setEnabled(false);
         }
-
-        @Override
-        public void run() {
-            try {
-                for(Button btn: btnArray){
-                    btn.setClickable(false);
-                }
-                Thread.sleep(3 * 1000);
-                btnArray[i].setBackground(getResources().getDrawable(R.drawable.custom_button_init_background));
-                for(Button btn: btnArray){
-                    btn.setClickable(true);
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-
-
-        }
-
     }
 
 

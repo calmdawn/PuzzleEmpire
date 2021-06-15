@@ -9,6 +9,7 @@ import android.os.CountDownTimer;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,7 +51,9 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_image_swap_puzzle);
+
 
         backIv = findViewById(R.id.activity_image_swap_puzzle_back_iv);
         originalIv = findViewById(R.id.activity_image_swap_puzzle_original_iv);
@@ -179,7 +182,7 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
 
         int resizeWidth = cropImageSwapRecyclerView.getWidth();
         int resizeHeight = cropImageSwapRecyclerView.getHeight();
-        Log.d("크롭 비트맵", "리사이즈 너비 = " + resizeWidth +" , " + "리사이즈 높이 = " + resizeHeight);
+        Log.d("크롭 비트맵", "리사이즈 너비 = " + resizeWidth + " , " + "리사이즈 높이 = " + resizeHeight);
         return Bitmap.createScaledBitmap(originalBitmap, resizeWidth, resizeHeight, true);
     }
 

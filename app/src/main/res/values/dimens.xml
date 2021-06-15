@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+
     <dimen name="small_margin_8dp">8dp</dimen>
     <dimen name="medium_margin_16dp">16dp</dimen>
     <dimen name="large_margin_24dp">24dp</dimen>
@@ -22,8 +23,10 @@
     <dimen name="very_large_textsize_16dp">16sp</dimen>
     <dimen name="textsize_20dp">20sp</dimen>
 
-    <dimen name="title_textsize_30dp">30sp</dimen>
-    <dimen name="sub_title_textsize_24dp">24sp</dimen>
+    <dimen name="medium_linespace_4dp">4dp</dimen>
+
+    <dimen name="title_textsize_30dp">30dp</dimen>
+    <dimen name="sub_title_textsize_24dp">24dp</dimen>
 
 
 </resources>

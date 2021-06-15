@@ -4,7 +4,6 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-
     <color name="pink_FF91A4">#FF91A4</color>
 
     <color name="gray_979797">#979797</color>
@@ -12,20 +11,13 @@
 
     <color name="white_FFFFFF">#FFFFFF</color>
 
+    <color name="light_black_272727">#272727</color>
     <color name="black_000000">#000000</color>
 
-    <color name="color_filter_iv_4B000000">#FFFFFF</color>
+    <color name="light_blue_BAF5F6">#BAF5F6</color>
 
-
-    <color name="colorImageViewBackground">#34FFFFFF</color>
-
-
-    <color name="colorPuzzleBackground">#FFFFFF</color>
-
-    <color name="colorRightPuzzle">#43B8EE</color>
-    <color name="colorWrongPuzzle">#FF0000</color>
-
-    <color name="colorScore">#BAF5F6</color>
+    <color name="right_puzzle_blue_43B8EE">#43B8EE</color>
+    <color name="wrong_puzzle_red_FF0000">#FF0000</color>
 
 
 </resources>
