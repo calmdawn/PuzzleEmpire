@@ -10,20 +10,20 @@
         android:id="@+id/activity_splash_title_tv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="@dimen/medium_margin_16dp"
         android:autoSizeMaxTextSize="@dimen/title_textsize_30dp"
         android:autoSizeTextType="uniform"
         android:gravity="center"
         android:maxLines="1"
-        android:paddingStart="@dimen/large_padding_24dp"
-        android:paddingEnd="@dimen/large_padding_24dp"
         android:text="@string/splash_title"
-        android:textColor="@color/pink_FF91A4"
+        android:textColor="@color/pink_FFB1B9"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_percent="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15"
+        app:layout_constraintWidth_percent="0.8" />
 
     <ImageView
         android:id="@+id/activity_splash_loading_iv"
@@ -31,9 +31,10 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/medium_margin_16dp"
         android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_splash_title_tv" />
+        app:layout_constraintTop_toBottomOf="@id/activity_splash_title_tv"
+        app:layout_constraintWidth_percent="0.8" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

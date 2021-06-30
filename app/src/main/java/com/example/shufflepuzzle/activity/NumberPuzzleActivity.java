@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -46,12 +47,12 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
         mainMediaPlayer = MediaPlayer.create(this, R.raw.main_theme);
 
         GridLayout gridLayout = findViewById(R.id.activity_number_puzzle_gridlayout);
-        scoreConstLayout = findViewById(R.id.activity_number_puzzle_score_constlayout);
+        scoreConstLayout = findViewById(R.id.activity_number_puzzle_layout_game_set_score);
 
         countDownTv = findViewById(R.id.activity_number_puzzle_countdown_tv);
         gameStartTv = findViewById(R.id.activity_number_puzzle_gamestart_tv);
-        TextView returnSelectGameTv = findViewById(R.id.activity_number_puzzle_score_return_select_game_tv);
-        scoreResultTv = findViewById(R.id.activity_number_puzzle_score_result_tv);
+        TextView returnSelectGameTv = findViewById(R.id.common_layout_puzzle_score_return_select_game_tv);
+        scoreResultTv = findViewById(R.id.common_layout_puzzle_score_result_tv);
 
         ImageView backIv = findViewById(R.id.activity_number_puzzle_back_iv);
 
@@ -78,7 +79,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
 
             @Override
             public void onFinish() {
-
+                gameSet();
             }
         };
     }
@@ -104,7 +105,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
                 v.setVisibility(View.INVISIBLE);
                 break;
             case R.id.activity_number_puzzle_back_iv:
-            case R.id.activity_number_puzzle_score_return_select_game_tv:
+            case R.id.common_layout_puzzle_score_return_select_game_tv:
                 finish();
                 break;
         }
@@ -138,19 +139,18 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
                 pausePuzzle(v);
             }
         }
+    }
 
-        private void gameSet() {
-            countDownTimer.cancel();
-            countDownTimer.onFinish();
-            scoreConstLayout.setVisibility(View.VISIBLE);
-            scoreResultTv.setText("점수 : " + timer);
-            gameStartTv.setVisibility(View.VISIBLE);
-            gameStartTv.setText("재시작");
-            gameStartTv.setEnabled(true);
-            setBtnArrayUnClickable(btnArrayList);
-        }
-
-
+    private void gameSet() {
+        countDownTimer.cancel();
+        scoreConstLayout.setVisibility(View.VISIBLE);
+        scoreResultTv.setText("점수 : " + timer);
+        gameStartTv.setVisibility(View.VISIBLE);
+        gameStartTv.setText("재시작");
+        gameStartTv.setEnabled(true);
+        setBtnArrayUnClickable(btnArrayList);
+        timer = 60;
+        Toast.makeText(this, "게임이 종료되었습니다~!", Toast.LENGTH_SHORT).show();
     }
 
     private void pausePuzzle(final View v) {  // 틀린 경우 빨간색 표시후 2초간 클릭불가 이후 정상작동

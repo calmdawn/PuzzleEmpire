@@ -2,7 +2,7 @@
     <string name="app_name">ShufflePuzzle</string>
 
     <!--Splash-->
-    <string name="splash_title">Welcome to Puzzle Game</string>
+    <string name="splash_title">그림 &amp; 숫자 퍼즐게임</string>
 
     <!--    Main-->
     <string name="main_title">게임 선택</string>
@@ -16,10 +16,10 @@
     <string name="image_swap_puzzle_matrix4">4 X 4</string>
     <string name="image_swap_puzzle_matrix5">5 X 5</string>
 
-    <!--    NumberPuzzle-->
-    <string name="number_puzzle_title">순서 맞추기</string>
-    <string name="number_puzzle_sub_title">1부터 25까지의 숫자를 보고 \n제한 시간 안에 차례대로 클릭해주세요</string>
-    <string name="number_puzzle_return_main">게임선택 화면으로</string>
+    <!--    Common_layout_-->
+    <string name="common_layout_puzzle_title">순서 맞추기</string>
+    <string name="common_layout_puzzle_sub_title">1부터 25까지의 숫자를 보고 \n제한 시간 안에 차례대로 클릭해주세요</string>
+    <string name="common_layout_puzzle_return_main">게임선택 화면으로</string>
 
     <!--    Common-->
     <string name="game_start">게임 시작</string>

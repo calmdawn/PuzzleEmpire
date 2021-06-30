@@ -77,6 +77,12 @@ public class CropImageRecyclerAdapter extends RecyclerView.Adapter<CropImageRecy
         return originalCropIvItemList;
     }
 
+    public void setCropIvItemListEnable(boolean isEnable){
+        for(int i=0; i<originalCropIvItemList.size(); i++){
+            originalCropIvItemList.get(i).setEnabled(isEnable);
+        }
+    }
+
     public void swapCropImage(ImageView firstIv, ImageView secondIv) {//이미지와 태그내용 바꿈
         Drawable tempDrawable = firstIv.getDrawable();
         String tempTag = firstIv.getTag().toString();
@@ -103,6 +109,7 @@ public class CropImageRecyclerAdapter extends RecyclerView.Adapter<CropImageRecy
         }
 
     }
+
 
     private boolean checkGameClear() {
         for (int i = 0; i < originalCropIvItemList.size(); i++) {

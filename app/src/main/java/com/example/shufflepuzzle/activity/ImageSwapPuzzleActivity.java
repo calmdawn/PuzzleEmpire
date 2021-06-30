@@ -1,12 +1,10 @@
 package com.example.shufflepuzzle.activity;
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,6 +30,7 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
 
     TextView gameStartTv;
     TextView countDownTv;
+    TextView scoreResultTv;
 
     Button matrix3Btn;
     Button matrix4Btn;
@@ -40,13 +40,18 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
     CropImageRecyclerAdapter cropImageRecyclerAdapter;
     GridLayoutManager cropImgGridLayoutManager;
 
+    RecyclerView photoListRecyclerView;
     PhotoListRecyclerAdapter photoListRecyclerAdapter;
+    ConstraintLayout scoreConstLayout;
+
 
     CountDownTimer countDownTimer;
 
     int matrixCount = 0;    // 3 * 3, 5 * 5,  5 * 5 어떤 매트릭스인지 설정
+    private int timer = 120;
 
     MediaPlayer mediaPlayer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,44 +65,50 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
 
         gameStartTv = findViewById(R.id.activity_image_swap_puzzle_game_start_tv);
         countDownTv = findViewById(R.id.activity_image_swap_puzzle_countdown_tv);
+        scoreResultTv = findViewById(R.id.common_layout_puzzle_score_result_tv);
+        TextView returnSelectGameTv = findViewById(R.id.common_layout_puzzle_score_return_select_game_tv);
+
 
         matrix3Btn = findViewById(R.id.activity_image_swap_puzzle_matrix3_btn);
         matrix4Btn = findViewById(R.id.activity_image_swap_puzzle_matrix4_btn);
         matrix5Btn = findViewById(R.id.activity_image_swap_puzzle_matrix5_btn);
+        scoreConstLayout = findViewById(R.id.activity_image_swap_puzzle_layout_game_set_score);
 
         gameStartTv.setOnClickListener(this);
         matrix3Btn.setOnClickListener(this);
         matrix4Btn.setOnClickListener(this);
         matrix5Btn.setOnClickListener(this);
-
+        returnSelectGameTv.setOnClickListener(this);
+        backIv.setOnClickListener(this);
 
         cropImageSwapRecyclerView = findViewById(R.id.activity_image_swap_puzzle_recycler);
         cropImageRecyclerAdapter = new CropImageRecyclerAdapter(this);
         cropImgGridLayoutManager = new GridLayoutManager(this, 1);   // 각칸의 수를 나눌 수
-
         cropImageSwapRecyclerView.setLayoutManager(cropImgGridLayoutManager);
         cropImageSwapRecyclerView.setAdapter(cropImageRecyclerAdapter);
 
-        RecyclerView photoListRecyclerView = findViewById(R.id.activity_image_swap_photo_list_recycler);
+        photoListRecyclerView = findViewById(R.id.activity_image_swap_photo_list_recycler);
         photoListRecyclerAdapter = new PhotoListRecyclerAdapter(this, this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         photoListRecyclerView.setLayoutManager(linearLayoutManager);
         photoListRecyclerView.setAdapter(photoListRecyclerAdapter);
 
-        photoListRecyclerAdapter.addItem(R.drawable.elec_pokemon);
-        photoListRecyclerAdapter.addItem(R.drawable.fire_pokemon);
-        photoListRecyclerAdapter.addItem(R.drawable.leaf_pokemon);
-        photoListRecyclerAdapter.addItem(R.drawable.water_pokemon);
+        photoListRecyclerAdapter.addItem(R.drawable.image_swap_puzzle_img_spring);
+        photoListRecyclerAdapter.addItem(R.drawable.image_swap_puzzle_img_summer);
+        photoListRecyclerAdapter.addItem(R.drawable.image_swap_puzzle_img_autumn);
+        photoListRecyclerAdapter.addItem(R.drawable.image_swap_puzzle_img_winter);
+        photoListRecyclerAdapter.addItem(R.drawable.image_swap_puzzle_img_fantasy);
         photoListRecyclerAdapter.notifyDataSetChanged();
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.sub_theme);
+        mediaPlayer = MediaPlayer.create(this, R.raw.main_theme);
         mediaPlayer.start();
 
 
-        countDownTimer = new CountDownTimer(120 * 1000, 1000) {  //제한시간 120초, 1초씩 감소
+        countDownTimer = new CountDownTimer(timer * 1000, 1000) {  //제한시간 120초, 1초씩 감소
             @Override
             public void onTick(long l) {
                 countDownTv.setText("제한시간 : " + l / 1000 + "초");
+                timer--;
             }
 
             @Override
@@ -106,39 +117,7 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
             }
         };
 
-        backIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
-    }
-
-    public void gameSet() {
-        countDownTimer.cancel();
-        Toast.makeText(this, "와우~! 정답입니다", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        countDownTimer.cancel();
-        countDownTimer.onFinish();
-        mediaPlayer.stop();
-        mediaPlayer = null;
-    }
-
-    private void setMatrixBtnsEnabled() {
-        matrix3Btn.setEnabled(true);
-        matrix3Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_black));
-        matrix3Btn.setTextColor(getColor(R.color.black_000000));
-        matrix4Btn.setEnabled(true);
-        matrix4Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_black));
-        matrix4Btn.setTextColor(getColor(R.color.black_000000));
-        matrix5Btn.setEnabled(true);
-        matrix5Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_black));
-        matrix5Btn.setTextColor(getColor(R.color.black_000000));
     }
 
     @Override
@@ -172,10 +151,65 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
             case R.id.activity_image_swap_puzzle_game_start_tv:
                 cropImageRecyclerAdapter.shuffle(matrixCount);
                 gameStartTv.setVisibility(View.GONE);
+                setMatrixBtnsEnabled(false);
+                photoListRecyclerView.setVisibility(View.INVISIBLE);
                 countDownTimer.start();
+                break;
+            case R.id.common_layout_puzzle_score_return_select_game_tv:
+            case R.id.activity_image_swap_puzzle_back_iv:
+                finish();
                 break;
         }
     }
+
+    public void gameSet() {
+        countDownTimer.cancel();
+        photoListRecyclerView.setVisibility(View.VISIBLE);
+        scoreConstLayout.setVisibility(View.VISIBLE);
+        scoreResultTv.setText("점수 : " + timer);
+        setMatrixBtnsEnabled(false);
+        cropImageRecyclerAdapter.setCropIvItemListEnable(false);
+        timer = 120;
+        Toast.makeText(this, "와우~! 정답입니다", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        countDownTimer.cancel();
+        countDownTimer.onFinish();
+        mediaPlayer.stop();
+        mediaPlayer = null;
+    }
+
+    private void setMatrixBtnsEnabled(boolean isEnable) {
+
+        if (isEnable) {
+            matrix3Btn.setEnabled(true);
+            matrix3Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_black));
+            matrix3Btn.setTextColor(getColor(R.color.black_000000));
+            matrix4Btn.setEnabled(true);
+            matrix4Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_black));
+            matrix4Btn.setTextColor(getColor(R.color.black_000000));
+            matrix5Btn.setEnabled(true);
+            matrix5Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_black));
+            matrix5Btn.setTextColor(getColor(R.color.black_000000));
+
+        } else {
+            matrix3Btn.setEnabled(false);
+            matrix3Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_gray));
+            matrix3Btn.setTextColor(getColor(R.color.gray_B9B9B9));
+            matrix4Btn.setEnabled(false);
+            matrix4Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_gray));
+            matrix4Btn.setTextColor(getColor(R.color.gray_B9B9B9));
+            matrix5Btn.setEnabled(false);
+            matrix5Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_gray));
+            matrix5Btn.setTextColor(getColor(R.color.gray_B9B9B9));
+        }
+
+
+    }
+
 
     //이미지 사이즈 재설정
     private Bitmap resizeBitmap(Bitmap originalBitmap) {
@@ -214,15 +248,6 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
     }
 
 
-    //px을 dp로 변환 (px을 입력받아 dp를 리턴)
-    public float convertPixelsToDp(float px) {
-        Resources resources = this.getResources();
-        DisplayMetrics metrics = resources.getDisplayMetrics();
-        float dp = px / ((float) metrics.densityDpi / DisplayMetrics.DENSITY_DEFAULT);
-        return dp;
-    }
-
-
     @Override
     public void onPhotoListItemClicked(View v, int position) {
         if (originalIv.getDrawable() != null) {   //기존에 맞출 그림이 세팅되어있던경우
@@ -230,10 +255,10 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
             gameStartTv.setVisibility(View.GONE);
         }
         originalIv.setImageResource(photoListRecyclerAdapter.getItem(position));
-        setMatrixBtnsEnabled();
-
-        countDownTimer.cancel();
-        countDownTimer.onFinish();
+        timer = 120;
+        countDownTv.setText("제한시간 : " + timer + "초");
+        scoreConstLayout.setVisibility(View.GONE);
+        setMatrixBtnsEnabled(true);
     }
 
 
