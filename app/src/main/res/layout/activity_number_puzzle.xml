@@ -12,9 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/medium_margin_16dp"
-        android:layout_marginTop="@dimen/medium_margin_16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_number_puzzle_title_tv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/activity_number_puzzle_title_tv"
         app:srcCompat="@drawable/ic_back_black_24dp" />
 
     <TextView
@@ -29,6 +29,16 @@
         app:layout_constraintHeight_percent="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/activity_number_puzzle_volume_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/medium_margin_16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/activity_number_puzzle_title_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/activity_number_puzzle_title_tv"
+        app:srcCompat="@drawable/common_ic_volume_up_24dp" />
 
     <TextView
         android:id="@+id/activity_number_puzzle_explain_tv"
@@ -99,7 +109,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/large_margin_24dp"
-        android:background="@drawable/activity_layout_background_round_pink"
+        android:background="@drawable/common_layout_background_round_pink"
         android:padding="@dimen/medium_padding_16dp"
         android:text="@string/game_start"
         android:textColor="@color/white_FFFFFF"

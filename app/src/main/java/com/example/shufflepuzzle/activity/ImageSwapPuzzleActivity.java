@@ -51,7 +51,7 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
     private int timer = 120;
 
     MediaPlayer mediaPlayer;
-
+    ImageView volumeIv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,7 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
 
         backIv = findViewById(R.id.activity_image_swap_puzzle_back_iv);
         originalIv = findViewById(R.id.activity_image_swap_puzzle_original_iv);
+        volumeIv = findViewById(R.id.activity_image_swap_puzzle_volume_iv);
 
         gameStartTv = findViewById(R.id.activity_image_swap_puzzle_game_start_tv);
         countDownTv = findViewById(R.id.activity_image_swap_puzzle_countdown_tv);
@@ -117,6 +118,21 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
             }
         };
 
+
+        volumeIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mediaPlayer == null) {
+                    volumeIv.setImageResource(R.drawable.common_ic_volume_up_24dp);
+                    mediaPlayer = MediaPlayer.create(ImageSwapPuzzleActivity.this, R.raw.main_theme);
+                    mediaPlayer.start();
+                } else {
+                    volumeIv.setImageResource(R.drawable.common_ic_volume_off_24dp);
+                    mediaPlayer.stop();
+                    mediaPlayer = null;
+                }
+            }
+        });
 
     }
 
@@ -174,36 +190,44 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        if(mediaPlayer != null){
+            volumeIv.setImageResource(R.drawable.common_ic_volume_off_24dp);
+            mediaPlayer.stop();
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         countDownTimer.cancel();
         countDownTimer.onFinish();
-        mediaPlayer.stop();
-        mediaPlayer = null;
     }
 
     private void setMatrixBtnsEnabled(boolean isEnable) {
 
         if (isEnable) {
             matrix3Btn.setEnabled(true);
-            matrix3Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_black));
+            matrix3Btn.setBackground(getDrawable(R.drawable.image_swap_layout_background_round_black));
             matrix3Btn.setTextColor(getColor(R.color.black_000000));
             matrix4Btn.setEnabled(true);
-            matrix4Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_black));
+            matrix4Btn.setBackground(getDrawable(R.drawable.image_swap_layout_background_round_black));
             matrix4Btn.setTextColor(getColor(R.color.black_000000));
             matrix5Btn.setEnabled(true);
-            matrix5Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_black));
+            matrix5Btn.setBackground(getDrawable(R.drawable.image_swap_layout_background_round_black));
             matrix5Btn.setTextColor(getColor(R.color.black_000000));
 
         } else {
             matrix3Btn.setEnabled(false);
-            matrix3Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_gray));
+            matrix3Btn.setBackground(getDrawable(R.drawable.image_swap_layout_background_round_gray));
             matrix3Btn.setTextColor(getColor(R.color.gray_B9B9B9));
             matrix4Btn.setEnabled(false);
-            matrix4Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_gray));
+            matrix4Btn.setBackground(getDrawable(R.drawable.image_swap_layout_background_round_gray));
             matrix4Btn.setTextColor(getColor(R.color.gray_B9B9B9));
             matrix5Btn.setEnabled(false);
-            matrix5Btn.setBackground(getDrawable(R.drawable.activity_image_swap_layout_background_round_gray));
+            matrix5Btn.setBackground(getDrawable(R.drawable.image_swap_layout_background_round_gray));
             matrix5Btn.setTextColor(getColor(R.color.gray_B9B9B9));
         }
 

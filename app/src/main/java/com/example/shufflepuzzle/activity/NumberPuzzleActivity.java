@@ -36,6 +36,8 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
     MediaPlayer mainMediaPlayer;
     MediaPlayer wrongMediaPlayer;
 
+    ImageView volumeIv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +57,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
         scoreResultTv = findViewById(R.id.common_layout_puzzle_score_result_tv);
 
         ImageView backIv = findViewById(R.id.activity_number_puzzle_back_iv);
-
+        volumeIv = findViewById(R.id.activity_number_puzzle_volume_iv);
 
         gameStartTv.setOnClickListener(this);
         returnSelectGameTv.setOnClickListener(this);
@@ -69,7 +71,12 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
         }
 
         mainMediaPlayer.start();
+        mainMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
 
+            }
+        });
         countDownTimer = new CountDownTimer(timer * 1000, 1000) {   // 1초씩 줄어듬
             @Override
             public void onTick(long l) {    //0초시 자동으로 onFinish() 호출함
@@ -79,16 +86,46 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
 
             @Override
             public void onFinish() {
-                gameSet();
+
             }
         };
+
+
+        volumeIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mainMediaPlayer == null) {
+                    volumeIv.setImageResource(R.drawable.common_ic_volume_up_24dp);
+                    mainMediaPlayer = MediaPlayer.create(NumberPuzzleActivity.this, R.raw.main_theme);
+                    mainMediaPlayer.start();
+                } else {
+                    volumeIv.setImageResource(R.drawable.common_ic_volume_off_24dp);
+                    mainMediaPlayer.stop();
+                    mainMediaPlayer = null;
+                }
+            }
+        });
+
+
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(mainMediaPlayer != null){
+            volumeIv.setImageResource(R.drawable.common_ic_volume_off_24dp);
+            mainMediaPlayer.stop();
+            mainMediaPlayer = null;
+        }
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mainMediaPlayer.stop();
-        mainMediaPlayer = null;
+        countDownTimer.cancel();
+        countDownTimer.onFinish();
     }
 
     @Override
@@ -113,7 +150,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
 
     private void setBtnArrayInit(ArrayList<Button> btnArrayList) {
         for (Button btn : btnArrayList) {
-            btn.setBackground(getDrawable(R.drawable.activity_number_puzzle_layout_background_btn_init));
+            btn.setBackground(getDrawable(R.drawable.number_puzzle_layout_background_btn_init));
             btn.setTextColor(getColor(R.color.light_black_272727));
         }
     }
@@ -125,7 +162,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
         public void onClick(View v) {
             if (((Button) v).getText().equals(String.valueOf(currentNum))) {    //버튼 숫자가 현재 숫자와 같은 경우
                 ((Button) v).setTextColor(getColor(R.color.right_puzzle_blue_43B8EE));
-                v.setBackground(getDrawable(R.drawable.activity_number_puzzle_layout_background_btn_right));
+                v.setBackground(getDrawable(R.drawable.number_puzzle_layout_background_btn_right));
                 v.setEnabled(false);
 
                 if (currentNum == 25) {   // 모두 다 맞춘경우
@@ -135,7 +172,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
                 }
 
             } else {   //버튼 숫자와 현재 숫자가 틀린 경우
-                v.setBackground(getDrawable(R.drawable.activity_number_puzzle_layout_background_btn_wrong));
+                v.setBackground(getDrawable(R.drawable.number_puzzle_layout_background_btn_wrong));
                 pausePuzzle(v);
             }
         }
@@ -163,7 +200,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
             public void run() {
                 wrongMediaPlayer.stop();
                 wrongMediaPlayer = null;
-                v.setBackground(getDrawable(R.drawable.activity_number_puzzle_layout_background_btn_init));
+                v.setBackground(getDrawable(R.drawable.number_puzzle_layout_background_btn_init));
                 setBtnArrayClickable(btnArrayList);
 
             }
@@ -182,7 +219,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
         button.setLayoutParams(params);
         button.setText(text);   //텍스트 입력
         button.setTextColor(getColor(R.color.light_black_272727));
-        button.setBackground(getDrawable(R.drawable.activity_number_puzzle_layout_background_btn_init));    //기본 버튼배경
+        button.setBackground(getDrawable(R.drawable.number_puzzle_layout_background_btn_init));    //기본 버튼배경
         button.setEnabled(false);
         return button;
     }

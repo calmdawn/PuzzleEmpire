@@ -10,20 +10,48 @@
         android:id="@+id/activity_splash_title_tv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:autoSizeMaxTextSize="@dimen/title_textsize_30dp"
+        android:autoSizeMaxTextSize="@dimen/textsize_20dp"
         android:autoSizeTextType="uniform"
-        android:gravity="center"
-        android:maxLines="1"
         android:text="@string/splash_title"
         android:textColor="@color/pink_FFB1B9"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintHeight_percent="0.06"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.15"
+        app:layout_constraintVertical_bias="0.12"
         app:layout_constraintWidth_percent="0.8" />
+
+    <TextView
+        android:id="@+id/activity_splash_title_tv2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="@dimen/textsize_20dp"
+        android:autoSizeTextType="uniform"
+        android:text="@string/splash_title2"
+        android:textColor="@color/pink_FFB1B9"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/activity_splash_title_tv"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintStart_toStartOf="@+id/activity_splash_title_tv"
+        app:layout_constraintTop_toBottomOf="@+id/activity_splash_title_tv" />
+
+
+    <TextView
+        android:id="@+id/activity_splash_title_tv3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="@dimen/textsize_20dp"
+        android:autoSizeTextType="uniform"
+        android:text="@string/splash_title3"
+        android:textColor="@color/pink_FFB1B9"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/activity_splash_title_tv2"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintStart_toStartOf="@+id/activity_splash_title_tv2"
+        app:layout_constraintTop_toBottomOf="@+id/activity_splash_title_tv2" />
+
 
     <ImageView
         android:id="@+id/activity_splash_loading_iv"
@@ -34,7 +62,23 @@
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/activity_splash_title_tv"
+        app:layout_constraintTop_toBottomOf="@id/activity_splash_title_tv3"
         app:layout_constraintWidth_percent="0.8" />
+
+    <TextView
+        android:id="@+id/activity_splash_app_name_tv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:autoSizeMaxTextSize="@dimen/large_textsize_14dp"
+        android:autoSizeTextType="uniform"
+        android:textColor="@color/blue_3264AA"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Shuffle Puzzle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activity_splash_title_tv2"
+        app:layout_constraintHeight_percent="0.05"
+        app:layout_constraintStart_toStartOf="@+id/activity_splash_title_tv2"
+        app:layout_constraintTop_toBottomOf="@+id/activity_splash_loading_iv" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
