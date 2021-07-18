@@ -1,7 +1,7 @@
-## ShufflePuzzle   [Update 21.06.16]
+## ShufflePuzzle   [Update 21.07.18]
 
 
-### 그림&숫자 퍼즐맞추기 앱
+### 퍼즐제국 앱
 
 #### 인트로 화면 & 퍼즐 선택 화면
 
