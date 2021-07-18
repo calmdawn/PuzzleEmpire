@@ -1,4 +1,4 @@
-## ShufflePuzzle   [Update 21.07.18]
+## PuzzleEmpire   [Update 21.07.18]
 
 
 ### 퍼즐제국 앱
