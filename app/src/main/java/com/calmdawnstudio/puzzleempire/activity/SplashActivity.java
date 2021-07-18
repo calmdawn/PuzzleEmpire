@@ -1,4 +1,4 @@
-package com.example.shufflepuzzle.activity;
+package com.calmdawnstudio.puzzleempire.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.shufflepuzzle.R;
+import com.calmdawnstudio.puzzleempire.R;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
 
         Glide.with(this).load(R.drawable.splash_img_welcome).circleCrop().into(loadingIv);
 
-        Handler handler = new Handler();
+        Handler handler = new Handler(getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -31,7 +31,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 3000);
+        }, 2000);
 
 
     }

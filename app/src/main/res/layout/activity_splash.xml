@@ -74,7 +74,7 @@
         android:textColor="@color/blue_3264AA"
         android:textStyle="bold"
         android:gravity="center"
-        android:text="Shuffle Puzzle"
+        android:text="Puzzle Empire"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/activity_splash_title_tv2"
         app:layout_constraintHeight_percent="0.05"

@@ -1,4 +1,4 @@
-package com.example.shufflepuzzle.activity;
+package com.calmdawnstudio.puzzleempire.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.shufflepuzzle.R;
+import com.calmdawnstudio.puzzleempire.R;
 
 public class MainActivity extends AppCompatActivity {
 

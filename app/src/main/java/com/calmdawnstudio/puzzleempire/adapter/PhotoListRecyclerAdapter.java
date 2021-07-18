@@ -1,7 +1,6 @@
-package com.example.shufflepuzzle.adapter;
+package com.calmdawnstudio.puzzleempire.adapter;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +9,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shufflepuzzle.R;
+import com.calmdawnstudio.puzzleempire.R;
 
 import java.util.ArrayList;
 

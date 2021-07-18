@@ -1,10 +1,9 @@
-package com.example.shufflepuzzle.adapter;
+package com.calmdawnstudio.puzzleempire.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
@@ -15,8 +14,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shufflepuzzle.R;
-import com.example.shufflepuzzle.activity.ImageSwapPuzzleActivity;
+import com.calmdawnstudio.puzzleempire.R;
+import com.calmdawnstudio.puzzleempire.activity.ImageSwapPuzzleActivity;
 
 import java.util.ArrayList;
 

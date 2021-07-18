@@ -1,4 +1,4 @@
-package com.example.shufflepuzzle.activity;
+package com.calmdawnstudio.puzzleempire.activity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.shufflepuzzle.R;
+import com.calmdawnstudio.puzzleempire.R;
 
 import java.util.ArrayList;
 
@@ -23,6 +23,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
 
 
     ArrayList<Button> btnArrayList;
+    ArrayList<Button> remainArrayList;  //정답까지 남은 버튼들
 
     int currentNum;
     int timer = 60;
@@ -45,6 +46,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_number_puzzle);
 
         btnArrayList = new ArrayList<>();
+        remainArrayList = new ArrayList<>();
         NumberBtnOnClickListener numberBtnOnClickListener = new NumberBtnOnClickListener();
         mainMediaPlayer = MediaPlayer.create(this, R.raw.main_theme);
 
@@ -113,7 +115,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
     @Override
     protected void onPause() {
         super.onPause();
-        if(mainMediaPlayer != null){
+        if (mainMediaPlayer != null) {
             volumeIv.setImageResource(R.drawable.common_ic_volume_off_24dp);
             mainMediaPlayer.stop();
             mainMediaPlayer = null;
@@ -153,6 +155,10 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
             btn.setBackground(getDrawable(R.drawable.number_puzzle_layout_background_btn_init));
             btn.setTextColor(getColor(R.color.light_black_272727));
         }
+
+        remainArrayList.clear();
+        remainArrayList.addAll(btnArrayList);
+
     }
 
 
@@ -164,6 +170,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
                 ((Button) v).setTextColor(getColor(R.color.right_puzzle_blue_43B8EE));
                 v.setBackground(getDrawable(R.drawable.number_puzzle_layout_background_btn_right));
                 v.setEnabled(false);
+                remainArrayList.remove(((Button) v));
 
                 if (currentNum == 25) {   // 모두 다 맞춘경우
                     gameSet();
@@ -193,7 +200,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
     private void pausePuzzle(final View v) {  // 틀린 경우 빨간색 표시후 2초간 클릭불가 이후 정상작동
         wrongMediaPlayer = MediaPlayer.create(this, R.raw.sound_button_wrong);
         wrongMediaPlayer.start();
-        setBtnArrayUnClickable(btnArrayList);
+        setBtnArrayUnClickable(remainArrayList);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -201,7 +208,7 @@ public class NumberPuzzleActivity extends AppCompatActivity implements View.OnCl
                 wrongMediaPlayer.stop();
                 wrongMediaPlayer = null;
                 v.setBackground(getDrawable(R.drawable.number_puzzle_layout_background_btn_init));
-                setBtnArrayClickable(btnArrayList);
+                setBtnArrayClickable(remainArrayList);
 
             }
         }, 2000);

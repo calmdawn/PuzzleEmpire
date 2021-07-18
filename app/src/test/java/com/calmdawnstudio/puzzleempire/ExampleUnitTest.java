@@ -1,4 +1,4 @@
-package com.example.shufflepuzzle;
+package com.calmdawnstudio.puzzleempire;
 
 import org.junit.Test;
 

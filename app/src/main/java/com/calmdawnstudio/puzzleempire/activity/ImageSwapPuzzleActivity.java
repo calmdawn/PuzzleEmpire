@@ -1,4 +1,4 @@
-package com.example.shufflepuzzle.activity;
+package com.calmdawnstudio.puzzleempire.activity;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -15,13 +15,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shufflepuzzle.R;
-import com.example.shufflepuzzle.adapter.CropImageRecyclerAdapter;
-import com.example.shufflepuzzle.adapter.PhotoListRecyclerAdapter;
+import com.calmdawnstudio.puzzleempire.R;
+import com.calmdawnstudio.puzzleempire.adapter.CropImageRecyclerAdapter;
+import com.calmdawnstudio.puzzleempire.adapter.PhotoListRecyclerAdapter;
 
 public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.OnClickListener, PhotoListRecyclerAdapter.PhotoListClickListener {
 
@@ -31,6 +32,7 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
     TextView gameStartTv;
     TextView countDownTv;
     TextView scoreResultTv;
+    TextView returnSelectGameTv;
 
     Button matrix3Btn;
     Button matrix4Btn;
@@ -59,40 +61,9 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_image_swap_puzzle);
 
-
-        backIv = findViewById(R.id.activity_image_swap_puzzle_back_iv);
-        originalIv = findViewById(R.id.activity_image_swap_puzzle_original_iv);
-        volumeIv = findViewById(R.id.activity_image_swap_puzzle_volume_iv);
-
-        gameStartTv = findViewById(R.id.activity_image_swap_puzzle_game_start_tv);
-        countDownTv = findViewById(R.id.activity_image_swap_puzzle_countdown_tv);
-        scoreResultTv = findViewById(R.id.common_layout_puzzle_score_result_tv);
-        TextView returnSelectGameTv = findViewById(R.id.common_layout_puzzle_score_return_select_game_tv);
-
-
-        matrix3Btn = findViewById(R.id.activity_image_swap_puzzle_matrix3_btn);
-        matrix4Btn = findViewById(R.id.activity_image_swap_puzzle_matrix4_btn);
-        matrix5Btn = findViewById(R.id.activity_image_swap_puzzle_matrix5_btn);
-        scoreConstLayout = findViewById(R.id.activity_image_swap_puzzle_layout_game_set_score);
-
-        gameStartTv.setOnClickListener(this);
-        matrix3Btn.setOnClickListener(this);
-        matrix4Btn.setOnClickListener(this);
-        matrix5Btn.setOnClickListener(this);
-        returnSelectGameTv.setOnClickListener(this);
-        backIv.setOnClickListener(this);
-
-        cropImageSwapRecyclerView = findViewById(R.id.activity_image_swap_puzzle_recycler);
-        cropImageRecyclerAdapter = new CropImageRecyclerAdapter(this);
-        cropImgGridLayoutManager = new GridLayoutManager(this, 1);   // 각칸의 수를 나눌 수
-        cropImageSwapRecyclerView.setLayoutManager(cropImgGridLayoutManager);
-        cropImageSwapRecyclerView.setAdapter(cropImageRecyclerAdapter);
-
-        photoListRecyclerView = findViewById(R.id.activity_image_swap_photo_list_recycler);
-        photoListRecyclerAdapter = new PhotoListRecyclerAdapter(this, this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        photoListRecyclerView.setLayoutManager(linearLayoutManager);
-        photoListRecyclerView.setAdapter(photoListRecyclerAdapter);
+        initUI();
+        setupUI();
+        setAdapter();
 
         photoListRecyclerAdapter.addItem(R.drawable.image_swap_puzzle_img_spring);
         photoListRecyclerAdapter.addItem(R.drawable.image_swap_puzzle_img_summer);
@@ -136,6 +107,49 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
 
     }
 
+    private void setAdapter() {
+        cropImageRecyclerAdapter = new CropImageRecyclerAdapter(this);
+        cropImgGridLayoutManager = new GridLayoutManager(this, 1);   // 각칸의 수를 나눌 수
+        cropImageSwapRecyclerView.setLayoutManager(cropImgGridLayoutManager);
+        cropImageSwapRecyclerView.setAdapter(cropImageRecyclerAdapter);
+
+        photoListRecyclerAdapter = new PhotoListRecyclerAdapter(this, this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        photoListRecyclerView.addItemDecoration(new DividerItemDecoration(this, linearLayoutManager.getOrientation()));
+        photoListRecyclerView.setLayoutManager(linearLayoutManager);
+        photoListRecyclerView.setAdapter(photoListRecyclerAdapter);
+
+    }
+
+    private void setupUI() {
+        gameStartTv.setOnClickListener(this);
+        matrix3Btn.setOnClickListener(this);
+        matrix4Btn.setOnClickListener(this);
+        matrix5Btn.setOnClickListener(this);
+        returnSelectGameTv.setOnClickListener(this);
+        backIv.setOnClickListener(this);
+
+    }
+
+    private void initUI() {
+        backIv = findViewById(R.id.activity_image_swap_puzzle_back_iv);
+        originalIv = findViewById(R.id.activity_image_swap_puzzle_original_iv);
+        volumeIv = findViewById(R.id.activity_image_swap_puzzle_volume_iv);
+
+        gameStartTv = findViewById(R.id.activity_image_swap_puzzle_game_start_tv);
+        countDownTv = findViewById(R.id.activity_image_swap_puzzle_countdown_tv);
+        scoreResultTv = findViewById(R.id.common_layout_puzzle_score_result_tv);
+        returnSelectGameTv = findViewById(R.id.common_layout_puzzle_score_return_select_game_tv);
+
+
+        matrix3Btn = findViewById(R.id.activity_image_swap_puzzle_matrix3_btn);
+        matrix4Btn = findViewById(R.id.activity_image_swap_puzzle_matrix4_btn);
+        matrix5Btn = findViewById(R.id.activity_image_swap_puzzle_matrix5_btn);
+        scoreConstLayout = findViewById(R.id.activity_image_swap_puzzle_layout_game_set_score);
+        cropImageSwapRecyclerView = findViewById(R.id.activity_image_swap_puzzle_recycler);
+        photoListRecyclerView = findViewById(R.id.activity_image_swap_photo_list_recycler);
+    }
+
     @Override
     public void onClick(View view) {
 
@@ -168,7 +182,8 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
                 cropImageRecyclerAdapter.shuffle(matrixCount);
                 gameStartTv.setVisibility(View.GONE);
                 setMatrixBtnsEnabled(false);
-                photoListRecyclerView.setVisibility(View.INVISIBLE);
+                setMatrixBtnsVisibility(View.GONE);
+                photoListRecyclerView.setVisibility(View.GONE);
                 countDownTimer.start();
                 break;
             case R.id.common_layout_puzzle_score_return_select_game_tv:
@@ -180,6 +195,7 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
 
     public void gameSet() {
         countDownTimer.cancel();
+        setMatrixBtnsVisibility(View.VISIBLE);
         photoListRecyclerView.setVisibility(View.VISIBLE);
         scoreConstLayout.setVisibility(View.VISIBLE);
         scoreResultTv.setText("점수 : " + timer);
@@ -231,9 +247,13 @@ public class ImageSwapPuzzleActivity extends AppCompatActivity implements View.O
             matrix5Btn.setTextColor(getColor(R.color.gray_B9B9B9));
         }
 
-
     }
 
+    private void setMatrixBtnsVisibility(int visibility) {
+        matrix3Btn.setVisibility(visibility);
+        matrix4Btn.setVisibility(visibility);
+        matrix5Btn.setVisibility(visibility);
+    }
 
     //이미지 사이즈 재설정
     private Bitmap resizeBitmap(Bitmap originalBitmap) {
